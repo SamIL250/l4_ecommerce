@@ -16,15 +16,23 @@
                         <div>
                             <div class="grid gap-5 border border-gray-100 rounded-md relative">
                                 <a href="./lib/services/cart/remove_item.php?product_id=<?=$data['product']?>&&user_id=<?=$data['user']?>" class="absolute right-[-5px] top-[-5px] cursor-pointer"><img src="./lib/assets/icons/remove.png" class="w-[30px]" alt=""></a>
-                                <div class="flex justify-center p-2"><img src="<?=$data['product_image'] ?>" class="w-[80%]" alt="ps 5"></div>
+                                <div class="flex justify-center p-2">
+                                    <a href="cart-product-details?product_id=<?=$data['product_id']?>">
+                                        <img src="<?=$data['product_image'] ?>" class="w-[80%]" alt="ps 5">
+                                    </a>
+                                </div>
                                 <div class="bg-[white] rounded-md border-gray-200 p-4">
-                                    <p><?php echo $data['product_name'] ?> (<?=$data['cart_product_quantity']?>)</p>
+                                    
+                                    <div class="flex justify-between">
+                                        <p><?php echo $data['product_name'] ?> (<?=$data['cart_product_quantity']?>)</p>
+                                        <p class="font-bold text-md"><?php echo $data['product_price'] ?> Frw</p>
+                                    </div>
                                     <div class="flex items-center justify-between gap-3 my-3">
                                         <button class="border border-gray-300 py-1 px-6 rounded-md bg-[whitesmoke]">Bargain</button>
                                         <?php
                                             if(isset($_SESSION['user'])) {
                                                 ?>
-                                                    <a href="" class="flex items-center border border-gray-200 shadow-sm rounded-md px-3 py-[6px]">Checkout</a>
+                                                    <a href="checkout?product_id=<?=$data['product_id']?>" class="flex items-center border border-gray-200 shadow-sm rounded-md px-3 py-[6px]">Checkout</a>
                                                 <?php
                                             } else {
                                                 ?>

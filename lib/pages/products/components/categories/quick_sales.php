@@ -12,37 +12,40 @@
         </div>
         <div class="grid grid-cols-2 px-4 gap-3">
             <?php
-               $products = mysqli_query(
+            $products = mysqli_query(
                 $conn,
                 "SELECT * FROM products LIMIT 2"
-               );
+            );
             //    print_r($products);
-            foreach($products as $data) {
-                ?> 
-                    <div>
-                        <div class="grid gap-5 border border-gray-100 rounded-md">
-                            <div class="flex justify-center"><img src="<?=$data['product_image'] ?>" class="w-[80%]" alt="ps 5"></div>
-                            <div class="bg-[white] rounded-md border-gray-200 p-4">
+            foreach ($products as $data) {
+            ?>
+                <div>
+                    <div class="grid gap-5 border border-gray-100 rounded-md">
+                        <div class="flex justify-center"><img src="<?= $data['product_image'] ?>" class="w-[80%]" alt="ps 5"></div>
+                        <div class="bg-[white] rounded-md border-gray-200 p-4">
+                            <div class="flex justify-between">
                                 <p><?php echo $data['product_name'] ?></p>
-                                <div class="flex items-center justify-between gap-3 my-3">
-                                    <button class="border border-gray-300 py-1 px-6 rounded-md bg-[whitesmoke]">Bargain</button>
-                                    <?php
-                                        if(isset($_SESSION['user'])) {
-                                            ?>
-                                                <a href="./lib/services/cart/add_cart.php?product_id=<?=$data['product_id']?>&&user_id=<?=$_SESSION['user']['user_id']?>" class="flex items-center border border-gray-200 shadow-sm rounded-md px-3 py-[1px]">Add <img src="./lib/assets/icons/cart.png" class="w-[30px]" alt="" srcset=""></a>
-                                            <?php
-                                        } else {
-                                            ?>
-                                                <a href="./lib/services/cart/add_cart.php?product_id=<?=$data['product_id']?>?>" class="flex items-center border border-gray-200 shadow-sm rounded-md px-3 py-[1px]">Add <img src="./lib/assets/icons/cart.png" class="w-[30px]" alt="" srcset=""></a>
-                                            <?php
-                                        }
-                                    ?>
-                                    
-                                </div>
+                                <p class="font-bold text-xl"><?php echo $data['product_price'] ?> Frw</p>
+                            </div>
+                            <div class="flex items-center justify-between gap-3 my-3">
+                                <button class="border border-gray-300 py-1 px-6 rounded-md bg-[whitesmoke]">Bargain</button>
+                                <?php
+                                if (isset($_SESSION['user'])) {
+                                ?>
+                                    <a href="./lib/services/cart/add_cart.php?product_id=<?= $data['product_id'] ?>&&user_id=<?= $_SESSION['user']['user_id'] ?>" class="flex items-center border border-gray-200 shadow-sm rounded-md px-3 py-[1px]">Add <img src="./lib/assets/icons/cart.png" class="w-[30px]" alt="" srcset=""></a>
+                                <?php
+                                } else {
+                                ?>
+                                    <a href="./lib/services/cart/add_cart.php?product_id=<?= $data['product_id'] ?>?>" class="flex items-center border border-gray-200 shadow-sm rounded-md px-3 py-[1px]">Add <img src="./lib/assets/icons/cart.png" class="w-[30px]" alt="" srcset=""></a>
+                                <?php
+                                }
+                                ?>
+
                             </div>
                         </div>
                     </div>
-                <?php
+                </div>
+            <?php
             }
             ?>
         </div>
