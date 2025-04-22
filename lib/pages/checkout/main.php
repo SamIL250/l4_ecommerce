@@ -4,7 +4,7 @@ $product_id = $_GET['product_id'];
 
 <div class="px-32 py-20">
     <p class="text-2xl font-bold text-gray-600">Checkout</p>
-    <form action="" method="POST" class="gap-4 grid grid-cols-12 my-10">
+    <form action="./lib/services/orders/new_order.php" method="POST" class="gap-4 grid grid-cols-12 my-10">
         <div class="col-span-8">
             <div class="mx-20">
                 <?php
